@@ -121,8 +121,12 @@ public class POOArticle {
      */
     public void list()
     {
-	System.out.printf("#%d Article Title: %s  ",this.id,this.title);
+	System.out.printf("Article Title: %s  ",this.title);
 	System.out.printf("By %s ",this.author);
 	System.out.printf("evaluation: %d",this.evalcount);
+    }
+    public int showid()
+    {
+	return this.id;
     }
 }
