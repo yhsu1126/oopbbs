@@ -26,6 +26,11 @@ public class POOArticle {
 	this.content=content;
 	evalcount=0;
     }
+    /**
+     * give a good comment 
+     * @param message the comment
+     * @return -1 as failed, others as success
+     */
     public int push(String message)
     {
 	if(evalmessages.length<=1024)
@@ -42,6 +47,11 @@ public class POOArticle {
 	    return -1;
 	}
     }
+    /**
+     * give a bad comment 
+     * @param message the comment
+     * @return -1 as failed, others as success
+     */
     public int boo(String message)
     {
 	if(evalmessages.length<=1024)
@@ -58,6 +68,11 @@ public class POOArticle {
 	    return -1;
 	}
     }
+    /**
+     * give a neutral comment 
+     * @param message the comment
+     * @return -1 as failed, others as success
+     */
     public int arrow(String message)
     {
 	if(evalmessages.length<=1024)
@@ -73,6 +88,9 @@ public class POOArticle {
 	    return -1;
 	}
     }
+    /**
+     * show the article all its information and comments
+     */
     public void show()
     {
 	this.list();
@@ -98,6 +116,9 @@ public class POOArticle {
 	    System.out.printf("%s\n",this.evalmessages[i]);
 	}
     }
+    /**
+     * act as the "banner" of the article, can also used when we need to create a simple article list
+     */
     public void list()
     {
 	System.out.printf("#%d Article Title: %s  ",this.id,this.title);
