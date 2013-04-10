@@ -530,7 +530,7 @@ public class JFrameExample extends JFrame implements KeyListener{
 	      instruction.setVisible(false);
 	      cmfield.setVisible(true);
 	      cmfield.requestFocus();
-	      this.revalidate();
+	      this.invalidate();this.validate();;
 	      command=1;
 	      }
 	      if(current instanceof POOBoard)
@@ -540,10 +540,10 @@ public class JFrameExample extends JFrame implements KeyListener{
 	      show.setVisible(false);
 	      cmfield.setVisible(true);
 	      cmfield.requestFocus();
-	      this.revalidate();
+	      this.invalidate();this.validate();;
 	      contentfield.setVisible(true);
 	      contentfield.requestFocus();
-	      this.revalidate();
+	      this.invalidate();this.validate();;
 	      command=1;
 	      }
 	  }
@@ -558,7 +558,7 @@ public class JFrameExample extends JFrame implements KeyListener{
 	      instruction.setVisible(false);
 	      cmfield.setVisible(true);
 	      cmfield.requestFocus();
-	      this.revalidate();
+	      this.invalidate();this.validate();;
 	      command=2;
 	      }
 	  }
@@ -574,7 +574,7 @@ public class JFrameExample extends JFrame implements KeyListener{
 	      instruction.setVisible(false);
 	      cmfield.setVisible(true);
 	      cmfield.requestFocus();
-	      this.revalidate();
+	      this.invalidate();this.validate();;
 	      command=3;
 	      }
 	  }
@@ -590,7 +590,7 @@ public class JFrameExample extends JFrame implements KeyListener{
 	      instruction.setVisible(false);
 	      cmfield.setVisible(true);
 	      cmfield.requestFocus();
-	      this.revalidate();
+	      this.invalidate();this.validate();;
 	      command=4;
 	      }
 	      if(current instanceof POOBoard)
@@ -599,7 +599,7 @@ public class JFrameExample extends JFrame implements KeyListener{
 	      instruction.setVisible(false);
 	      cmfield.setVisible(true);
 	      cmfield.requestFocus();
-	      this.revalidate();
+	      this.invalidate();this.validate();;
 	      command=2;
 	      }
 	  }
@@ -615,7 +615,7 @@ public class JFrameExample extends JFrame implements KeyListener{
 	      instruction.setVisible(false);
 	      cmfield.setVisible(true);
 	      cmfield.requestFocus();
-	      this.revalidate();
+	      this.invalidate();this.validate();;
 	      command=5;
 	      }
 	      if(current instanceof POOBoard)
@@ -624,7 +624,7 @@ public class JFrameExample extends JFrame implements KeyListener{
 		      instruction.setVisible(false);
 		      cmfield.setVisible(true);
 		      cmfield.requestFocus();
-		      this.revalidate();
+		      this.invalidate();this.validate();;
 		      command=4;
 	      }
 	  }
@@ -638,7 +638,7 @@ public class JFrameExample extends JFrame implements KeyListener{
 	      instruction.setVisible(false);
 	      cmfield.setVisible(true);
 	      cmfield.requestFocus();
-	      this.revalidate();
+	      this.invalidate();this.validate();;
 	      command=-1;
 	  }
       }
@@ -669,7 +669,7 @@ public class JFrameExample extends JFrame implements KeyListener{
 	      instruction.setVisible(false);
 	      cmfield.setVisible(true);
 	      cmfield.requestFocus();
-	      this.revalidate();
+	      this.invalidate();this.validate();;
 	      command=0;
 	  }
       }
@@ -683,7 +683,7 @@ public class JFrameExample extends JFrame implements KeyListener{
 	      instruction.setVisible(false);
 	      cmfield.setVisible(true);
 	      cmfield.requestFocus();
-	      this.revalidate();
+	      this.invalidate();this.validate();;
 	      command=1;
 	      }
 	  }
@@ -698,7 +698,7 @@ public class JFrameExample extends JFrame implements KeyListener{
 	      instruction.setVisible(false);
 	      cmfield.setVisible(true);
 	      cmfield.requestFocus();
-	      this.revalidate();
+	      this.invalidate();this.validate();;
 	      command=2;
 	      }
 	  }
@@ -713,7 +713,8 @@ public class JFrameExample extends JFrame implements KeyListener{
 	      instruction.setVisible(false);
 	      cmfield.setVisible(true);
 	      cmfield.requestFocus();
-	      this.revalidate();
+	      this.invalidate();
+	      this.validate();
 	      command=3;
 	      }
 	  }
