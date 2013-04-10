@@ -1,3 +1,4 @@
+import java.util.Iterator;
 import java.util.LinkedList;
 
 
@@ -51,5 +52,32 @@ public class POODirectory {
     public void showname()
     {
 	System.out.printf("%s\n", this.name);
+    }
+    public void show()
+    {
+	Iterator<Object> index=this.space.iterator();
+	int pos=0;
+	while(index.hasNext())
+	{
+	    Object tmp=index.next();
+	    System.out.printf("%d\t",pos);
+	    pos++;
+	    if(tmp instanceof POOBoard)
+	    {
+		System.out.printf("Board\t");
+		((POOBoard) tmp).showname();
+		System.out.println();
+	    }
+	    else if(tmp instanceof POODirectory)
+	    {
+		System.out.printf("Directory\t");
+		((POODirectory) tmp).showname();
+		System.out.println();
+	    }
+	    else
+	    {
+		System.out.printf("-----\t-----------------------\n");
+	    }
+	}
     }
 }
