@@ -113,6 +113,6 @@ public class POOBoard {
      */
     public void showname()
     {
-	System.out.println(this.name);
+	System.out.printf("%s",this.name);
     }
 }
