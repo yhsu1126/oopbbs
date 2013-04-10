@@ -40,7 +40,7 @@ public class POOBoard {
      * delete the article at certain position
      * @param pos precondition: must not exceed limit 1000 or there is an article at that position
      */
-    public void del(int pos)
+    public int del(int pos)
     {
 	try
 	{
@@ -49,8 +49,9 @@ public class POOBoard {
 	}
 	catch(Exception ex)
 	{
-	    System.out.printf("Something wrong happened : %s",ex.getMessage());
+	    return -1;
 	}
+	return 0;
     }
     /**
      * get the size of the board
@@ -63,15 +64,30 @@ public class POOBoard {
     /**
      * show all the article name author, evaluation point in the board
      */
-    public void show()
+    public String show()
     {
+	
+	if(article.size()>0)
+	{
+	    String a="<html><table>";
+		a+="<tr><td>ID</td><td>標題</td><td>作者</td><td>人氣</td></tr>";
 	Iterator<POOArticle> ip=this.article.iterator();
 	int pos=0;
 	while(ip.hasNext())
 	{
-	    System.out.printf("%d ",pos);
-	    ip.next().show();
+	    a+="<tr><td>"+Integer.toString(pos)+"</td>";
+	    POOArticle tmp=ip.next();
+	    a+="<td>"+tmp.showtitle()+"</td>";
+	    a+="<td>"+tmp.showAuthor()+"</td>";
+	    a+="<td>"+tmp.showcount()+"</td></tr>";
 	    pos++;
+	}
+	a+="</table></html>";
+	return a;
+	}
+	else
+	{
+	    return "目前無任何文章~";
 	}
     }
     /**
@@ -79,17 +95,25 @@ public class POOBoard {
      * @param src the source
      * @param dest the destination
      */
-    public void move(int src,int dest)
+    public int move(int src,int dest)
     {
 	if(src>=1000 || dest>=1000)
 	{
-	    System.out.printf("Exceed Max\n");
+	    return -1;
 	}
 	else
 	{
+	    try
+	    {
 	    POOArticle tmp=this.article.get(src);
 	    this.article.remove(src);
 	    this.article.add(dest, tmp);
+	    }
+	    catch(Exception e)
+	    {
+		return -1;
+	    }
+	    return 0;
 	}
     }
     /**
@@ -111,8 +135,19 @@ public class POOBoard {
     /**
      * show the name of the board;
      */
-    public void showname()
+    public String showname()
     {
-	System.out.printf("%s",this.name);
+	return this.name;
+    }
+    public Object getstuff(int a)
+    {
+	try
+	{
+	    return this.article.get(a);
+	}
+	catch(Exception e)
+	{
+	    return new Boolean(false);
+	}
     }
 }

@@ -21,63 +21,109 @@ public class POODirectory {
     {
 	space.add("------");
     }
-    public void del(int pos)
+    public int del(int pos)
     {
+	int result;
 	try
 	{
+	    if(space.get(pos) instanceof POODirectory)
+	    {
+		result=1;
+	    }
+	    else if(space.get(pos) instanceof POOBoard)
+	    {
+		result=2;
+	    }
+	    else
+	    {
+		result=0;
+	    }
 	    space.remove(pos);
 	}
 	catch(Exception ex)
 	{
-	    System.out.printf("An error has occured : %s",ex.getMessage());
+	    return -1;
 	}
+	return result;
     }
-    public void move(int src, int dest)
+    public int move(int src, int dest)
     {
 	if(src>=1024 || dest>=1024)
 	{
-	    System.out.printf("Exceed Max\n");
+	    return -1;
 	}
 	else
 	{
+	    try
+	    {
 	    Object tmp=this.space.get(src);
 	    this.space.remove(src);
 	    this.space.add(dest, tmp);
+	    }
+	    catch(Exception e)
+	    {
+		return -1;
+	    }
 	}
+	return 0;
     }
     public int length()
     {
 	return this.space.size();
     }
-    public void showname()
+    public String showname()
     {
-	System.out.printf("%s\n", this.name);
+	return this.name;
     }
-    public void show()
+    public String show()
     {
+	if(space.size()>0)
+	{
+	String a="<html><table>";
+	a+="<tr><td>項目</td><td>類型</td><td>名稱</td><td>大小</td></tr>";
 	Iterator<Object> index=this.space.iterator();
 	int pos=0;
 	while(index.hasNext())
 	{
 	    Object tmp=index.next();
-	    System.out.printf("%d\t",pos);
+	    //System.out.printf("%d\t",pos);
+	    a+="<tr><td>"+Integer.toString(pos)+"</td>";
 	    pos++;
 	    if(tmp instanceof POOBoard)
 	    {
-		System.out.printf("Board\t");
-		((POOBoard) tmp).showname();
-		System.out.println();
+		a+="<td>Board</td>";
+		a+="<td>"+((POOBoard) tmp).showname()+"</td>";
+		a+="<td>"+Integer.toString(((POOBoard) tmp).length())+"</td></tr>";
 	    }
 	    else if(tmp instanceof POODirectory)
 	    {
-		System.out.printf("Directory\t");
-		((POODirectory) tmp).showname();
-		System.out.println();
+		a+="<td>Directory</td>";
+		a+="<td>"+((POODirectory) tmp).showname()+"</td>";
+		a+="<td>"+Integer.toString(((POODirectory) tmp).length())+"</td></tr>";
 	    }
 	    else
 	    {
-		System.out.printf("-----\t-----------------------\n");
+		a+="<td>-----</td><td>---------------------</td><td>--</td></tr>";
+		a+="<tr><td>項目</td><td>類型</td><td>名稱</td><td>大小</td></tr>";
 	    }
+	}
+	a+="</table></html>";
+	return a;
+	}
+	else
+	{
+	    return "目前無資料~";
+	}
+    }
+    public Object getstuff(int a)
+    {
+	try
+	{
+	    return this.space.get(a);
+	}
+	catch(Exception e)
+	{
+	    return new Boolean(false);
 	}
     }
 }

@@ -8,6 +8,7 @@ public class POOArticle {
     private String title;
     private String author;
     private String content;
+    private int count;
     private int evalcount;
     private int[] evaluation=new int[1024];
     private String[] evalmessages=new String[1024];
@@ -25,6 +26,7 @@ public class POOArticle {
 	this.author=author;
 	this.content=content;
 	evalcount=0;
+	count=0;
     }
     /**
      * give a good comment 
@@ -33,13 +35,14 @@ public class POOArticle {
      */
     public int push(String message)
     {
-	if(evalmessages.length<=1024)
+	if(count<=1024)
 	{
-	    int asize=evalmessages.length;
+	    int asize=count;
 	    evalcount+=1;
 	    evaluation[asize]=1;
 	    evalmessages[asize]=new String();
 	    evalmessages[asize]=message;
+	    count++;
 	    return 0;
 	}
 	else
@@ -54,13 +57,14 @@ public class POOArticle {
      */
     public int boo(String message)
     {
-	if(evalmessages.length<=1024)
+	if(count<=1024)
 	{
-	    int asize=evalmessages.length;
+	    int asize=count;
 	    evalcount-=1;
 	    evaluation[asize]=-1;
 	    evalmessages[asize]=new String();
 	    evalmessages[asize]=message;
+	    count++;
 	    return 0;
 	}
 	else
@@ -75,12 +79,13 @@ public class POOArticle {
      */
     public int arrow(String message)
     {
-	if(evalmessages.length<=1024)
+	if(count<=1024)
 	{
-	    int asize=evalmessages.length;
+	    int asize=count;
 	    evaluation[asize]=0;
 	    evalmessages[asize]=new String();
 	    evalmessages[asize]=message;
+	    count++;
 	    return 0;
 	}
 	else
@@ -91,30 +96,31 @@ public class POOArticle {
     /**
      * show the article all its information and comments
      */
-    public void show()
+    public String show()
     {
-	this.list();
-	System.out.printf("-----------------------------------------------------\n");
-	System.out.printf("%s",this.content);
+	String a="<html><table><tr><td>標題: "+this.showtitle()+"</td><td>作者: "+this.showAuthor()+"</td><td>人氣: "+this.showcount()+"</td></tr>";
+	a+="<tr><td colspan=\"3\">----------------------------------------------------------------------------</td></tr>";
+	a+="<tr><td colspan=\"3\">"+this.content+"</td></tr>";
 	int i;
-	for(i=0;i<evalmessages.length;i++)
+	for(i=0;i<count;i++)
 	{
 	    switch(evaluation[i])
 	    {
-	    	case 1:
-	    	    System.out.printf("Booo ");
+	    	case -1:
+	    	    a+="<tr><td>Booo</td>";
 	    	    break;
 	    	case 0:
 	    	    break;
-	    	case -1:
-	    	System.out.printf("Love ");
+	    	case 1:
+	    	    a+="<tr><td>Love</td>";
 	    	    break;
 	    	default:
-	    	System.out.printf(">>>> ");
+	    	a+="<tr><td>>>>></td>";
 	    	    break;
 	    }
-	    System.out.printf("%s\n",this.evalmessages[i]);
+	    a+="<td colspan=\"2\">"+this.evalmessages[i]+"</td></tr>";
 	}
+	return a;
     }
     /**
      * act as the "banner" of the article, can also used when we need to create a simple article list
@@ -125,8 +131,79 @@ public class POOArticle {
 	System.out.printf("By %s ",this.author);
 	System.out.printf("evaluation: %d",this.evalcount);
     }
+    public String showtitle()
+    {
+	return this.title;
+    }
+    public String showAuthor()
+    {
+	return this.author;
+    }
+    public String showcount()
+    {
+	return Integer.toString(this.evalcount);
+    }
+    public String showname()
+    {
+	return this.showtitle();
+    }
     public int showid()
     {
 	return this.id;
     }
+    public static String stringToHTMLString(String string) {
+	    StringBuffer sb = new StringBuffer(string.length());
+	    // true if last char was blank
+	    boolean lastWasBlankChar = false;
+	    int len = string.length();
+	    char c;
+
+	    for (int i = 0; i < len; i++)
+	        {
+	        c = string.charAt(i);
+	        if (c == ' ') {
+	            // blank gets extra work,
+	            // this solves the problem you get if you replace all
+	            // blanks with &nbsp;, if you do that you loss 
+	            // word breaking
+	            if (lastWasBlankChar) {
+	                lastWasBlankChar = false;
+	                sb.append("&nbsp;");
+	                }
+	            else {
+	                lastWasBlankChar = true;
+	                sb.append(' ');
+	                }
+	            }
+	        else {
+	            lastWasBlankChar = false;
+	            //
+	            // HTML Special Chars
+	            if (c == '"')
+	                sb.append("&quot;");
+	            else if (c == '&')
+	                sb.append("&amp;");
+	            else if (c == '<')
+	                sb.append("&lt;");
+	            else if (c == '>')
+	                sb.append("&gt;");
+	            else if (c == '\n')
+	                // Handle Newline
+	                sb.append("&lt;br/&gt;");
+	            else {
+	                int ci = 0xffff & c;
+	                if (ci < 160 )
+	                    // nothing special only 7 Bit
+	                    sb.append(c);
+	                else {
+	                    // Not 7 Bit use the unicode system
+	                    sb.append("&#");
+	                    sb.append(new Integer(ci).toString());
+	                    sb.append(';');
+	                    }
+	                }
+	            }
+	        }
+	    return sb.toString();
+	}
 }
