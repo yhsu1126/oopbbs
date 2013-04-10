@@ -29,7 +29,7 @@ public class JFrameExample extends JFrame {
 	JLabel banner=new JLabel("<html><div><font color=\"white\"><b>歡迎~ &nbsp;root!</b>目前位置為："+pos
 		+" <br/><font style=\"font-size:80%;\">目前系統已有: "+countd+"個資料夾		"+countb+" 個討論版	"+
 		counta+"篇文章</font></font></div></html>");
-	JLabel footer=new JLabel("<html><font style=\"font-size:50%\" color=\"white\">Created by <a href=\"mailto:b00902104@ntu.edu.tw\">yhsu1126</font></html>");
+	JLabel footer=new JLabel("<html><font style=\"font-size:50%\" color=\"white\">Created by <a href=\"mailto:b00902104@ntu.edu.tw\">yhsu1126</a></font></html>");
 	banner.setFont(dfont);
 	footer.setFont(dfont);
 	this.getContentPane().add(banner,BorderLayout.NORTH);
